@@ -1,44 +1,58 @@
-// Problem: Reverse a Linked List
-// Input: 1 -> 2 -> 3 -> 4 -> null
-// Output: 4 -> 3 -> 2 -> 1 -> null
+/**********  Reverse a Linked List **********/
+// Given a singly linked list, return the linked list in reverse.
+// Example:
+// Input: 1 -> 2 -> 3 -> 4 -> 5 
+// Output: 5 -> 4 -> 3 -> 2 -> 1
 
-class Node {
+// Time: O(n)
+// Space: O(1)
+// Explanation: We can reverse the linked list by iterating through the linked list and reversing the pointers of each node.
+
+// Definition of a Node in the Linked List
+class ListNode {
     constructor(value) {
         this.value = value;
         this.next = null;
     }
 }
 
-const reverseLinkedList = (head) => {
+// Function to reverse a linked list
+function reverseLinkedList(head) {
     let prev = null;
     let current = head;
 
     while (current) {
-        const next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
+        let next = current.next; // Save the next node
+        current.next = prev;    // Reverse the current node's pointer
+        prev = current;         // Move prev to the current node
+        current = next;         // Move to the next node
     }
 
-    return prev;
-};
+    return prev; // New head of the reversed linked list
+}
 
-// Example Usage
-let head = new Node(1);
-head.next = new Node(2);
-head.next.next = new Node(3);
-head.next.next.next = new Node(4);
-
-const printList = (head) => {
+// Function to print the linked list
+function printLinkedList(head) {
     let current = head;
-    let result = '';
+    const result = [];
     while (current) {
-        result += current.value + ' -> ';
+        result.push(current.value);
         current = current.next;
     }
-    result += 'null';
-    return result;
-};
+    console.log(result.join(" -> "));
+}
 
-const reversedHead = reverseLinkedList(head);
-console.log(printList(reversedHead));
+// Example Usage
+let head = new ListNode(1);
+head.next = new ListNode(2);
+head.next.next = new ListNode(3);
+head.next.next.next = new ListNode(4);
+head.next.next.next.next = new ListNode(5);
+
+console.log("Original Linked List:");
+printLinkedList(head);
+
+head = reverseLinkedList(head);
+
+console.log("Reversed Linked List:");
+printLinkedList(head);
