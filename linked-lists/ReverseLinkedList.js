@@ -29,4 +29,16 @@ head.next = new Node(2);
 head.next.next = new Node(3);
 head.next.next.next = new Node(4);
 
-console.log(reverseLinkedList(head));
+const printList = (head) => {
+    let current = head;
+    let result = '';
+    while (current) {
+        result += current.value + ' -> ';
+        current = current.next;
+    }
+    result += 'null';
+    return result;
+};
+
+const reversedHead = reverseLinkedList(head);
+console.log(printList(reversedHead));
